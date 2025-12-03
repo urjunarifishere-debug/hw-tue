@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Flex & Grid</title>
+
+<style>
+  :root {
+    --purple-light: #f0e6ff;
+    --purple: #d0b5ff;
+    --purple-dark: #9b6bff;
+    --violet: #7b3bee;
+    --bg: #f9f7ff;
+  }
+
+  body {
+    font-family: "Arial Rounded MT", sans-serif;
+    background: var(--bg);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--violet);
+    margin-bottom: 20px;
+    text-shadow: 0 2px 6px rgba(123, 59, 238, 0.2);
+  }
+
+  h2 {
+    color: var(--purple-dark);
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2::before {
+    content: "🎵";
+  }
+
+  .box {
+    background: var(--purple-light);
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(155, 107, 255, 0.1);
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(90deg, var(--purple), var(--purple-dark));
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .menu a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(155, 107, 255, 0.15);
+    border: 2px solid var(--purple-light);
+  }
+  .card::after {
+    content: "🎵";
+    display: block;
+    margin-top: 10px;
+    font-size: 22px;
+  }
+  .center-container {
+    margin-top: 30px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--purple-light);
+    border-radius: 15px;
+  }
+  .center-box {
+    background: white;
+    padding: 25px 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(155, 107, 255, 0.15);
+    font-weight: bold;
+    color: var(--purple-dark);
+  }
+
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .msg {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 60%;
+  }
+  .left {
+    background: white;
+    align-self: flex-start;
+    border: 2px solid var(--purple-light);
+  }
+  .right {
+    background: var(--purple);
+    align-self: flex-end;
+    color: white;
+  }
+  .grid-photos {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .grid-photos div {
+    height: 100px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(155, 107, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .grid-photos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .layout {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "main sidebar"
+      "footer footer";
+    gap: 10px;
+  }
+  header, main, aside, footer {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 8px rgba(155, 107, 255, 0.15);
+  }
+
+  header { grid-area: header; background: var(--purple); color: white; }
+  main   { grid-area: main; background: white; }
+  aside  { grid-area: sidebar; background: var(--purple-light); }
+  footer { grid-area: footer; background: var(--purple-dark); color: white; }
+  .profile {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+    background: var(--purple-light);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(155, 107, 255, 0.1);
+  }
+  .photo {
+    border-radius: 15px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .auto-grid {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid var(--purple-light);
+    box-shadow: 0 4px 8px rgba(155, 107, 255, 0.1);
+  }
+  .item::after {
+    content: "🎵";
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+  }
+</style>
+
+</head>
+<body>
+
+<h1>🎵 Music Flex & Grid Demo 🎵</h1>
+<h2>Горизонталды меню</h2>
+<nav class="menu">
+  <a href="#">Басты бет</a>
+  <a href="#">Әндер</a>
+  <a href="#">Байланыс</a>
+</nav>
+
+<h2>Ән карточкалары</h2>
+<div class="cards">
+  <div class="card">Ән 1</div>
+  <div class="card">Ән 2</div>
+  <div class="card">Ән 3</div>
+</div>
+
+<h2>Ортасына қою</h2>
+<div class="center-container">
+  <div class="center-box">Ортадағы ән</div>
+</div>
+
+<h2>Чат хабарламалары</h2>
+<div class="chat">
+  <div class="msg left">Бұл ән қандай?</div>
+  <div class="msg right">Бұл жаңа ән!</div>
+  <div class="msg left">Өте әдемі!</div>
+</div>
+
+<h2>3×3 музыка торы</h2>
+<div class="grid-photos">
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+  <div><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Музыка"></div>
+</div>
+
+<h2>Лэндинг макеті</h2>
+<div class="layout">
+  <header>Музыка</header>
+  <main>Әндер тізімі</main>
+  <aside>Жанрлар</aside>
+<footer>Музыка әлемі</footer>
+</div>
+
+<h2>Әнші карточкасы</h2>
+<div class="profile">
+  <div class="photo"><img src="https://i.pinimg.com/736x/1e/e8/57/1ee8571f184f5944ba49819ad3578d28.jpg" alt="Әнші"></div>
+  <div>
+    <h3>Әнші</h3>
+    <p>Қысқаша мәлімет</p>
+  </div>
+</div>
+
+<h2>Auto-fit адаптив карточкалары</h2>
+<div class="auto-grid">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+</div>
+
+</body>
+</html>
